@@ -3,8 +3,10 @@ FROM haraldlons/submodules
 
 # The default shell is sh, switching to bash makes it easier to work with ros
 SHELL ["/bin/bash", "-c"]
-RUN rm -rf catkin_ws/devel catkin_ws/build
+RUN rm -rf catkin_ws/devel catkin_ws/build src/r18dv_pipeline
 
+RUN source /opt/ros/kinetic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES="catkin_simple"
+RUN source /opt/ros/kinetic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES="gtsam_catkin"
 
 # # Copy the cide of the beginner tutorials folder into the catkin workspace
 # # COPY has the syntax COPY path/on/host/machine /path/inside/docker/image
@@ -39,12 +41,10 @@ RUN rm -rf catkin_ws/devel catkin_ws/build
 # RUN cd src/gtsam_catkin && ls -la
 # RUN echo "Compiling ONLY catkin_simple"
 # RUN date
-# RUN source /opt/ros/kinetic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES="catkin_simple"
 # # RUN apt-get update && apt-get install --no-install-recommends -y yum && yum install tbb tbb-devel
 # # RUN yum install tbb tbb-devel
 # RUN echo "Compiling ONLY gtsam_catkin. Expecting long time"
 # RUN date
-# RUN source /opt/ros/kinetic/setup.bash && source devel/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES="gtsam_catkin"
 # RUN date
 
 # RUN apt-get update && \
