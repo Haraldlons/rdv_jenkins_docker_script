@@ -3,10 +3,36 @@ FROM haraldlons/submodules
 
 # The default shell is sh, switching to bash makes it easier to work with ros
 SHELL ["/bin/bash", "-c"]
-RUN rm -rf catkin_ws/devel catkin_ws/build src/r18dv_pipeline
+RUN rm -rf devel build src/r18dv_pipeline
 
 RUN source /opt/ros/kinetic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES="catkin_simple"
 RUN source /opt/ros/kinetic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES="gtsam_catkin"
+
+ARG ssh_prv_key
+ARG ssh_pub_key
+
+RUN apt-get update && \
+    apt-get install -y \
+        git \
+        openssh-server \
+        libmysqlclient-dev
+
+# Authorize SSH Host
+RUN mkdir -p /root/.ssh && \
+    chmod 0700 /root/.ssh && \
+    ssh-keyscan github.com > /root/.ssh/known_hosts
+
+# Add the keys and set permissions
+RUN echo "$ssh_prv_key" > /root/.ssh/id_rsa && \
+    echo "$ssh_pub_key" > /root/.ssh/id_rsa.pub && \
+    chmod 600 /root/.ssh/id_rsa && \
+    chmod 600 /root/.ssh/id_rsa.pub
+
+# Avoid cache purge by adding requirements first
+RUN cd src && git clone git@github.com:RevolveNTNU/rdv_pipeline.git
+
+# Remove SSH keys
+RUN rm -rf /root/.ssh/
 
 # # Copy the cide of the beginner tutorials folder into the catkin workspace
 # # COPY has the syntax COPY path/on/host/machine /path/inside/docker/image
