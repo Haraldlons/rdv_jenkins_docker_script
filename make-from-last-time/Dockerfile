@@ -1,5 +1,5 @@
 # Use the ros-kinetic-base image as a base image. This image already contains all nessecary dependencies for running ros
-FROM haraldlons:submodules
+FROM haraldlons/submodules
 
 # The default shell is sh, switching to bash makes it easier to work with ros
 SHELL ["/bin/bash", "-c"]
