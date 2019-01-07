@@ -23,7 +23,7 @@ RUN apt-get update && \
 
 COPY . src/
 
-RUN source /opt/ros/kinetic/setup.bash && catkin_make
+RUN source /opt/ros/kinetic/setup.bash && catkin_make -DCATKIN_WHITELIST_PACKAGES=""
 # RUN source /opt/ros/kinetic/setup.bash
 COPY docker_entry_script.sh /
 # Move the entry script to root
