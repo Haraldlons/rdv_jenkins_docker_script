@@ -56,12 +56,16 @@ RUN pwd
 # RUN cd src && git clone https://github.com/ethz-asl/gtsam_catkin.git
 RUN cd src && \
     git clone https://github.com/catkin/catkin_simple.git
-RUN cd src && \
-    git clone https://github.com/ethz-asl/gtsam_catkin.git
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y libboost-all-dev && \
+    apt-get install --no-install-recommends -y cmake && \
+    apt-get install --no-install-recommends -y libtbb-dev
 # RUN cd src && \
-#     git clone https://github.com/ethz-asl/gtsam_catkin.git && \
-#     cd gtsam_catkin && \
-#     git checkout 4b61d6862b2319367e25f85d1149271063fc2bcd
+    # git clone https://github.com/ethz-asl/gtsam_catkin.git
+RUN cd src && \
+    git clone https://github.com/ethz-asl/gtsam_catkin.git && \
+    cd gtsam_catkin && \
+    git checkout 4b61d6862b2319367e25f85d1149271063fc2bcd
 RUN cd src/gtsam_catkin && ls -la
 RUN echo "Compiling ONLY catkin_simple"
 RUN date
