@@ -19,7 +19,6 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y ros-kinetic-jsk-rviz-plugins && \
     pip2 install scipy && \
     pip2 install wheel && \
-    python2 setup.py bdist_wheel && \ 
     pip2 install prettytable && \
     pip2 install tensorflow && \
     rm -rf /var/lib/apt/lists/*
