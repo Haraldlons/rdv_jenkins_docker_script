@@ -2,6 +2,7 @@
 FROM haraldlons/r18dv_catkin_simple_gtsam_catkin
 
 RUN apt-get update && \
+    apt-get install --no-install-recommends -y libvtk5-dev python-vtk && \
     apt-get install --no-install-recommends -y ros-kinetic-tf2-sensor-msgs && \
     apt-get install --no-install-recommends -y ros-kinetic-geometry2 && \
     apt-get install --no-install-recommends -y ros-kinetic-tf && \
@@ -19,13 +20,13 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y ros-kinetic-can-msgs && \
     apt-get install --no-install-recommends -y python-pip && \
     apt-get install --no-install-recommends -y ros-kinetic-jsk-rviz-plugins && \
-    apt-get install --no-install-recommends -y libvtk5-dev python-vtk && \
     apt-get install --no-install-recommends -y ros-kinetic-pcl-ros && \
     pip2 install scipy && \
     pip2 install wheel && \
     pip2 install prettytable && \
     pip2 install tensorflow && \
     rm -rf /var/lib/apt/lists/*
+
 
 COPY . src/
 
