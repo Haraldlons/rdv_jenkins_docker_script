@@ -19,6 +19,7 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y ros-kinetic-can-msgs && \
     apt-get install --no-install-recommends -y python-pip && \
     apt-get install --no-install-recommends -y ros-kinetic-jsk-rviz-plugins && \
+    apt-get install --no-install-recommends -y libvtk5-dev python-vtk && \
     pip2 install scipy && \
     pip2 install wheel && \
     pip2 install prettytable && \
