@@ -6,8 +6,10 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y ros-kinetic-geometry2 && \
     apt-get install --no-install-recommends -y ros-kinetic-tf && \
     apt-get install --no-install-recommends -y ros-kinetic-dynamic-reconfigure && \
+    apt-get install --no-install-recommends -y ros-kinetic-rqt-multiplot && \
     apt-get install --no-install-recommends -y liblapack-dev && \
     apt-get install --no-install-recommends -y libblas-dev && \
+    apt-get install --no-install-recommends -y libqwt-dev && \
     apt-get install --no-install-recommends -y libboost-dev && \
     apt-get install --no-install-recommends -y libarmadillo-dev && \
     apt-get install --no-install-recommends -y ros-kinetic-robot-localization && \
