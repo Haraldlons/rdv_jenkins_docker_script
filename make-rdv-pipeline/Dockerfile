@@ -2,7 +2,6 @@
 FROM haraldlons/r18dv_catkin_simple_gtsam_catkin
 
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y libvtk5-dev python-vtk && \
     apt-get install --no-install-recommends -y ros-kinetic-tf2-sensor-msgs && \
     apt-get install --no-install-recommends -y ros-kinetic-geometry2 && \
     apt-get install --no-install-recommends -y ros-kinetic-tf && \
