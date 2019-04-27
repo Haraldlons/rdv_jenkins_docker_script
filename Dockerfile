@@ -109,6 +109,11 @@ RUN apt-get update && \
     pip2 install tensorflow && \
     rm -rf /var/lib/apt/lists/*
 
+# Install g++-7 / gcc-7
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test \
+    apt-get update \
+    apt-get install gcc-7 g++-7
+
 RUN source /opt/ros/kinetic/setup.bash && catkin_make
 # RUN source /opt/ros/kinetic/setup.bash
 COPY docker_entry_script.sh /
